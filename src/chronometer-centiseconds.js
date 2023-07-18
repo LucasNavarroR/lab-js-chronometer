@@ -22,53 +22,65 @@ class Chronometer {
 
   getSeconds() {
     // ... your code goes here
-    if (this.currentTime === 0) {
+    if (this.currentTime <= 100) {
       return 0;
     } else {
       let secondsFilter = this.currentTime % 6000;
-      
+      let filterFilter;
       secondsFilter = secondsFilter.toString();
-      let filterFilter = secondsFilter.slice(0, 2);
+      console.log(secondsFilter)
+      if (this.currentTime > 100 ) {
+        console.log(secondsFilter)
+        filterFilter = secondsFilter.slice(-4,-2);
+        return Number(filterFilter);
+      } else if (this.currentTime > 1000 ){
       
-      return Number(filterFilter);
+           filterFilter = secondsFilter.slice(-4,-2);
+        
+           return Number(filterFilter);
+      }
+     
     }
   }
 
   getCentiseconds() {
-
     if (this.currentTime === 0) {
       return 0;
     } else {
-      let secondsFilter = this.currentTime % 60000;
-      
+      let secondsFilter = this.currentTime;
+
       secondsFilter = secondsFilter.toString();
-      let filterFilter = secondsFilter.slice(0, 1);
-      console.log(filterFilter);
-      return Number(filterFilter);
+      
+      
+      return Number(secondsFilter.slice(-2));
     }
-    // ... your code goes here
   }
 
   computeTwoDigitNumber(value) {
-    // ... your code goes here
     let valueString = value.toString();
+
     if (valueString.length === 1) {
       return `0${valueString}`;
     } else {
       return valueString;
     }
-
   }
 
   stop() {
-    // ... your code goes here
+    clearInterval(this.intervalId);
   }
 
   reset() {
-    // ... your code goes here
+    this.currentTime = 0;
   }
 
   split() {
-    // ... your code goes here
+  
+    
+    return `${this.computeTwoDigitNumber(
+      this.getMinutes()
+    )}:${this.computeTwoDigitNumber(
+      this.getSeconds()
+    )}.${this.computeTwoDigitNumber(this.getCentiseconds())}`;
   }
 }
