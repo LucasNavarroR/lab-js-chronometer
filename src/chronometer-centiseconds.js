@@ -28,21 +28,11 @@ class Chronometer {
       let secondsFilter = this.currentTime % 6000;
       let filterFilter;
       secondsFilter = secondsFilter.toString();
-      console.log(secondsFilter)
-      if (this.currentTime > 100 ) {
-        console.log(secondsFilter)
-        filterFilter = secondsFilter.slice(-4,-2);
-        return Number(filterFilter);
-      } else if (this.currentTime > 1000 ){
-      
-           filterFilter = secondsFilter.slice(-4,-2);
-        
-           return Number(filterFilter);
-      }
-     
+
+      filterFilter = secondsFilter.slice(-4, -2);
+      return Number(filterFilter);
     }
   }
-
   getCentiseconds() {
     if (this.currentTime === 0) {
       return 0;
@@ -50,8 +40,7 @@ class Chronometer {
       let secondsFilter = this.currentTime;
 
       secondsFilter = secondsFilter.toString();
-      
-      
+
       return Number(secondsFilter.slice(-2));
     }
   }
@@ -75,8 +64,6 @@ class Chronometer {
   }
 
   split() {
-  
-    
     return `${this.computeTwoDigitNumber(
       this.getMinutes()
     )}:${this.computeTwoDigitNumber(
